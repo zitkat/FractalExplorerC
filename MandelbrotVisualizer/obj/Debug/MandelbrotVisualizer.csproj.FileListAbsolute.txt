@@ -1,0 +1,13 @@
+C:\Users\tomas\Dropbox\projects\C\VS\MandelbrotVisualizer\MandelbrotVisualizer\bin\Debug\MandelbrotVisualizer.exe.config
+C:\Users\tomas\Dropbox\projects\Cis\KPG\cv\MandelbrotVisualizer\MandelbrotVisualizer\bin\Debug\MandelbrotVisualizer.exe.config
+C:\Users\tomas\Dropbox\projects\Cis\KPG\cv\MandelbrotVisualizer\MandelbrotVisualizer\bin\Debug\MandelbrotVisualizer.exe
+C:\Users\tomas\Dropbox\projects\Cis\KPG\cv\MandelbrotVisualizer\MandelbrotVisualizer\bin\Debug\MandelbrotVisualizer.pdb
+C:\Users\tomas\Dropbox\projects\Cis\KPG\cv\MandelbrotVisualizer\MandelbrotVisualizer\obj\Debug\MandelbrotVisualizer.csprojResolveAssemblyReference.cache
+C:\Users\tomas\Dropbox\projects\Cis\KPG\cv\MandelbrotVisualizer\MandelbrotVisualizer\obj\Debug\MandelbrotVisualizer.Form1.resources
+C:\Users\tomas\Dropbox\projects\Cis\KPG\cv\MandelbrotVisualizer\MandelbrotVisualizer\obj\Debug\MandelbrotVisualizer.Properties.Resources.resources
+C:\Users\tomas\Dropbox\projects\Cis\KPG\cv\MandelbrotVisualizer\MandelbrotVisualizer\obj\Debug\MandelbrotVisualizer.csproj.GenerateResource.Cache
+C:\Users\tomas\Dropbox\projects\Cis\KPG\cv\MandelbrotVisualizer\MandelbrotVisualizer\obj\Debug\MandelbrotVisualizer.exe
+C:\Users\tomas\Dropbox\projects\Cis\KPG\cv\MandelbrotVisualizer\MandelbrotVisualizer\obj\Debug\MandelbrotVisualizer.pdb
+C:\Users\tomas\Dropbox\projects\Cis\KPG\cv\FractalExplorer\MandelbrotVisualizer\bin\Debug\MandelbrotVisualizer.exe.config
+C:\Users\tomas\Dropbox\projects\Cis\KPG\cv\FractalExplorer\MandelbrotVisualizer\obj\Debug\MandelbrotVisualizer.exe
+C:\Users\tomas\Dropbox\projects\Cis\KPG\cv\FractalExplorer\MandelbrotVisualizer\obj\Debug\MandelbrotVisualizer.pdb
