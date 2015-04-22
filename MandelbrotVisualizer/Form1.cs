@@ -20,6 +20,8 @@ namespace MandelbrotVisualizer
         public Bitmap old_bmp;
         public Brush stet;
 
+        private Color barvaMnoziny = Color.Black;
+
         int whiteSpaceLeft = 0;//scale     
         int whiteSpaceTop = 0;
 
@@ -49,7 +51,7 @@ namespace MandelbrotVisualizer
             pero = new Pen(Color.Green);
             stet = new SolidBrush(Color.Green);
             graphics.Clear(Color.White);
-            drawMandel();
+            drawMandel(this.bmp);
             drawAxes();
              
         }
@@ -138,7 +140,7 @@ namespace MandelbrotVisualizer
                 resetDraw();
             }
 
-            drawMandel();
+            drawMandel(this.bmp);
             if (osy.Checked)
             {
                 drawAxes();
@@ -184,22 +186,21 @@ namespace MandelbrotVisualizer
 
         }
 
-        private void drawMandel()
+        private void drawMandel(Bitmap bmp)
         {
             progressBar1.Value = 0;
-            for (int i = 0; i < bmp.Height; i++)
+            for (int i = 0; i < bmp.Width; i++)
             {
-                for (int j = 0; j < bmp.Width; j++)
+                for (int j = 0; j < bmp.Height; j++)
                 {
 
                     int c = mandelCount(pixToCom(i, j).re, pixToCom(i, j).im, max_count);
                     if (max_count == c)
                     {
-                        bmp.SetPixel(i, j, Color.Black);
+                        bmp.SetPixel(i, j, barvaMnoziny);
                     }
                     else
                     {
-                        //TODO Pohrat si s vybarvovanim
                         Color b = Color.FromArgb( (255*(c ) /9/ max_count),  (255 * (c ) /3/ max_count), (255*(c) / max_count));
                         bmp.SetPixel(i, j, b);
                     }
@@ -207,7 +208,7 @@ namespace MandelbrotVisualizer
                 }
                 if (i != 0)
                 {
-                    progressBar1.Value = (int)Math.Round((double)i / bmp.Height  * 100);
+                    progressBar1.Value = (int)Math.Round((double)i / bmp.Width  * 100);
                 }
             }
 
@@ -264,8 +265,9 @@ namespace MandelbrotVisualizer
                 x = x * x - y * y + z.re;
                 y = 2.0 * y * tmpx + z.im;
                 fsq = x * x + y * y;
-               
-                graphics.DrawLine(pero, comToPix(tmpx, tmpy), comToPix(x, y));
+                Point b1 = comToPix(tmpx, tmpy);
+                Point b2 = comToPix(x, y);
+                graphics.DrawLine(pero,b1, b2 );
             }
             pero = new Pen(Color.Green);
         }
@@ -277,8 +279,8 @@ namespace MandelbrotVisualizer
             {
                 kliknutoR = true;
                 complex z = pixToCom((int)Math.Round(relativePosition.X), (int)Math.Round(relativePosition.Y));
-                reMaxBox.Text = z.re.ToString("F5");
-                imMaxBox.Text = z.im.ToString("F5");
+                reMaxBox.Text = z.re.ToString();
+                imMaxBox.Text = z.im.ToString();
 
                 new_max = z;
               
@@ -305,10 +307,10 @@ namespace MandelbrotVisualizer
                     new_min = new complex(new_max.re - s, new_max.im - s);
 
 
-                    reMaxBox.Text = new_max.re.ToString("F5");
-                    imMaxBox.Text = new_max.im.ToString("F5");
-                    reMinBox.Text = new_min.re.ToString("F5");
-                    imMinBox.Text = new_min.im.ToString("F5");
+                    reMaxBox.Text = new_max.re.ToString();
+                    imMaxBox.Text = new_max.im.ToString();
+                    reMinBox.Text = new_min.re.ToString();
+                    imMinBox.Text = new_min.im.ToString();
 
                     Point levy_horni_roh = comToPix(new complex(new_min.re, new_max.im));
                     Point dolni_pravy_roh = comToPix(new_max.re, new_min.im);
@@ -326,9 +328,6 @@ namespace MandelbrotVisualizer
         private void panel1_MouseUp(object sender, MouseEventArgs e)
         {
             kliknutoR = false;
-
-            
-           
         }
 
         private void panel1_MouseClick(object sender, MouseEventArgs e)
@@ -345,8 +344,8 @@ namespace MandelbrotVisualizer
                 complex z = pixToCom((int)Math.Round(relativePosition.X), (int)Math.Round(relativePosition.Y));
                 int k = mandelCount(z, max_count);
 
-                BodRe.Text = z.re.ToString("F5");
-                BodIm.Text = z.im.ToString("F5");
+                BodRe.Text = z.re.ToString();
+                BodIm.Text = z.im.ToString();
 
                 label2.Text = "Iteraci: " + k.ToString();
                 drawMandelSeries(z, max_count);
@@ -374,8 +373,8 @@ namespace MandelbrotVisualizer
             }
             int k = mandelCount(z, max_count);
 
-            BodRe.Text = z.re.ToString("F5");
-            BodIm.Text = z.im.ToString("F5");
+            BodRe.Text = z.re.ToString();
+            BodIm.Text = z.im.ToString();
 
             label2.Text = "Iteraci: " + k.ToString();
             drawMandelSeries(z, max_count);
@@ -394,11 +393,11 @@ namespace MandelbrotVisualizer
 
         private void putBounds()
         {
-            reMaxBox.Text = max.re.ToString("F5");
-            imMaxBox.Text = max.im.ToString("F5");
+            reMaxBox.Text = max.re.ToString();
+            imMaxBox.Text = max.im.ToString();
 
-            reMinBox.Text = min.re.ToString("F5");
-            imMinBox.Text = min.im.ToString("F5");
+            reMinBox.Text = min.re.ToString();
+            imMinBox.Text = min.im.ToString();
 
         }
 
@@ -426,7 +425,23 @@ namespace MandelbrotVisualizer
                 }
             }
         }
-  
+
+        private void uložitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ulozBmp();
+        }
+
+        private void konecToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void vyber_barvu_Click(object sender, EventArgs e)
+        {
+            colorDialog1.ShowDialog();
+            barvaMnoziny = colorDialog1.Color;
+        }
+
     }
 
     struct complex{
