@@ -4,6 +4,6 @@ C:\Users\tomas\FractalExplorer\MandelbrotVisualizer\obj\Debug\MandelbrotVisualiz
 C:\Users\tomas\FractalExplorer\MandelbrotVisualizer\bin\Debug\MandelbrotVisualizer.exe
 C:\Users\tomas\FractalExplorer\MandelbrotVisualizer\bin\Debug\MandelbrotVisualizer.pdb
 C:\Users\tomas\FractalExplorer\MandelbrotVisualizer\obj\Debug\FractalExplorer.csprojResolveAssemblyReference.cache
-C:\Users\tomas\FractalExplorer\MandelbrotVisualizer\obj\Debug\MandelbrotVisualizer.Form1.resources
-C:\Users\tomas\FractalExplorer\MandelbrotVisualizer\obj\Debug\MandelbrotVisualizer.Properties.Resources.resources
 C:\Users\tomas\FractalExplorer\MandelbrotVisualizer\obj\Debug\FractalExplorer.csproj.GenerateResource.Cache
+C:\Users\tomas\FractalExplorer\MandelbrotVisualizer\obj\Debug\FractalExplorer.Form1.resources
+C:\Users\tomas\FractalExplorer\MandelbrotVisualizer\obj\Debug\FractalExplorer.Properties.Resources.resources

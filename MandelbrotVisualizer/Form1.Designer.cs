@@ -1,4 +1,4 @@
-﻿namespace MandelbrotVisualizer
+﻿namespace FractalExplorer
 {
     partial class Form1
     {
@@ -52,7 +52,7 @@
             this.iteraci_box = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.reMaxBox = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.predpis = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.souborToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,6 +61,7 @@
             this.konecToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.Pouzit = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -90,7 +91,7 @@
             // 
             // ulozit
             // 
-            this.ulozit.Location = new System.Drawing.Point(12, 568);
+            this.ulozit.Location = new System.Drawing.Point(26, 634);
             this.ulozit.Name = "ulozit";
             this.ulozit.Size = new System.Drawing.Size(75, 23);
             this.ulozit.TabIndex = 3;
@@ -302,12 +303,12 @@
             this.reMaxBox.TabIndex = 12;
             this.reMaxBox.TextChanged += new System.EventHandler(this.boundriesBox_TextChanged);
             // 
-            // textBox1
+            // predpis
             // 
-            this.textBox1.Location = new System.Drawing.Point(94, 21);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(639, 20);
-            this.textBox1.TabIndex = 9;
+            this.predpis.Location = new System.Drawing.Point(94, 21);
+            this.predpis.Name = "predpis";
+            this.predpis.Size = new System.Drawing.Size(569, 20);
+            this.predpis.TabIndex = 9;
             // 
             // label1
             // 
@@ -364,13 +365,24 @@
             this.progressBar1.Size = new System.Drawing.Size(600, 13);
             this.progressBar1.TabIndex = 13;
             // 
+            // Pouzit
+            // 
+            this.Pouzit.Location = new System.Drawing.Point(662, 19);
+            this.Pouzit.Name = "Pouzit";
+            this.Pouzit.Size = new System.Drawing.Size(75, 23);
+            this.Pouzit.TabIndex = 14;
+            this.Pouzit.Text = "Použít";
+            this.Pouzit.UseVisualStyleBackColor = true;
+            this.Pouzit.Click += new System.EventHandler(this.Pouzit_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(737, 662);
+            this.Controls.Add(this.Pouzit);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.predpis);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -416,7 +428,7 @@
         private System.Windows.Forms.Button vykresli_bod;
         private System.Windows.Forms.Button reset;
         private System.Windows.Forms.CheckBox osy;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox predpis;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem souborToolStripMenuItem;
@@ -426,6 +438,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.Button vyber_barvu;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Button Pouzit;
     }
 }
 
