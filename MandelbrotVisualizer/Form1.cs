@@ -30,10 +30,10 @@ namespace FractalExplorer
 
         Complex max, min;
         Complex new_max, new_min;
-        int max_count = 500;
+        int max_count = 100;
         double prah = 4.0;
 
-        calc pocitadlo;
+        expression pocitadlo;
 
         float line_width = 1f; 
 
@@ -41,7 +41,7 @@ namespace FractalExplorer
         {
             InitializeComponent();
 
-            pocitadlo = new calc();
+            pocitadlo = new expression();
 
             max = new Complex(2, 2);
             min = new Complex(-2, -2);
@@ -55,7 +55,7 @@ namespace FractalExplorer
             pero = new Pen(Color.Green);
             stet = new SolidBrush(Color.Green);
             
-            drawMandel(pixels);
+            //drawMandel(pixels);
             refreshbmp();
             
             
@@ -532,12 +532,15 @@ namespace FractalExplorer
         private void vyber_barvu_Click(object sender, EventArgs e)
         {
             colorDialog1.ShowDialog();
+            //TODO set and border color selection
         }
 
         private void Pouzit_Click(object sender, EventArgs e)
         {
-            pocitadlo.setExpression(predpis.Text);
-            nakresli_Click(this, null);
+            pocitadlo.setExpression(predpis.Text.Replace(" ",""));
+            //nakresli_Click(this, null);
+            vysledek.Text = pocitadlo.nextIteration(new Complex(1, 0), new Complex(0, 0)).ToString();
+
         }
 
     }

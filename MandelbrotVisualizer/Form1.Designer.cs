@@ -62,6 +62,7 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.Pouzit = new System.Windows.Forms.Button();
+            this.vysledek = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -91,7 +92,7 @@
             // 
             // ulozit
             // 
-            this.ulozit.Location = new System.Drawing.Point(26, 634);
+            this.ulozit.Location = new System.Drawing.Point(34, 627);
             this.ulozit.Name = "ulozit";
             this.ulozit.Size = new System.Drawing.Size(75, 23);
             this.ulozit.TabIndex = 3;
@@ -307,7 +308,7 @@
             // 
             this.predpis.Location = new System.Drawing.Point(94, 21);
             this.predpis.Name = "predpis";
-            this.predpis.Size = new System.Drawing.Size(569, 20);
+            this.predpis.Size = new System.Drawing.Size(486, 20);
             this.predpis.TabIndex = 9;
             // 
             // label1
@@ -367,7 +368,7 @@
             // 
             // Pouzit
             // 
-            this.Pouzit.Location = new System.Drawing.Point(662, 19);
+            this.Pouzit.Location = new System.Drawing.Point(586, 21);
             this.Pouzit.Name = "Pouzit";
             this.Pouzit.Size = new System.Drawing.Size(75, 23);
             this.Pouzit.TabIndex = 14;
@@ -375,11 +376,21 @@
             this.Pouzit.UseVisualStyleBackColor = true;
             this.Pouzit.Click += new System.EventHandler(this.Pouzit_Click);
             // 
+            // vysledek
+            // 
+            this.vysledek.AutoSize = true;
+            this.vysledek.Location = new System.Drawing.Point(668, 28);
+            this.vysledek.Name = "vysledek";
+            this.vysledek.Size = new System.Drawing.Size(41, 13);
+            this.vysledek.TabIndex = 15;
+            this.vysledek.Text = "label10";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(737, 662);
+            this.Controls.Add(this.vysledek);
             this.Controls.Add(this.Pouzit);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.predpis);
@@ -439,6 +450,7 @@
         private System.Windows.Forms.Button vyber_barvu;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Button Pouzit;
+        private System.Windows.Forms.Label vysledek;
     }
 }
 
