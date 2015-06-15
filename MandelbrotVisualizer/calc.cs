@@ -10,28 +10,44 @@ namespace FractalExplorer
 {
 
     delegate Complex my_bin(Complex o1, Complex o2);/*operation reference*/
+    delegate Complex my_f(Complex o);
+
+    struct binop
+    {
+
+        public char op { get; set; }/*operation symbol*/
+        public my_bin operation_del { get; set; }
+
+        public Complex operation(Complex lefto, Complex righto)
+        {
+            return operation_del(lefto, righto);
+        }
+    }
+
+    struct func
+    {
+        public String name { get; set; }/*operation symbol*/
+        public my_f function_del { get; set; }
+
+        public Complex operation(Complex o)
+        {
+            return function_del(o);
+        }
+    }
 
     static class calc
     {
-        
-         public struct binop{
 
-	        public char op { get; set; }/*operation symbol*/
-            public my_bin operation_del { get; set; }
-
-
-            public Complex operation(Complex lefto, Complex righto)
-            {
-                return operation_del(lefto, righto);
-            }
-         }
-
-        public static binop[] binary_operations = {new binop{op = '+', operation_del = add},
-                                            new binop{op = '-', operation_del = sub},
-                                            new binop{op = '*', operation_del = mul},
-                                            new binop{op = '/', operation_del = dv},
-                                            new binop{op = '^', operation_del = pow},
-                                           };
+        public static binop[] binary_operations = {
+                                                    new binop{op = '+', operation_del = add},
+                                                    new binop{op = '-', operation_del = sub},
+                                                    new binop{op = '*', operation_del = mul},
+                                                    new binop{op = '/', operation_del = dv},
+                                                    new binop{op = '^', operation_del = pow},
+                                                };
+        public static func[] functions = {
+                                             new func{name = "-", function_del = u_minus}
+                                         };
 
         /// <summary>
         /// Returns square of euklidean norm of input complex number z
@@ -87,7 +103,6 @@ namespace FractalExplorer
 
         /// <summary>
         /// Returns a/b,
-        /// sets errno to EDOM if b==0 and returns inf if able.
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
@@ -119,9 +134,26 @@ namespace FractalExplorer
             return Complex.Pow(a,b);
         }
 
+        /// <summary>
+        /// Returns -o i.e. if o = a + bi -o= -a -bi
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
+        public static Complex u_minus(Complex o)
+        {
+            return -o;
+        }
+
         internal static int get_func_num(string p)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < functions.Length; i++)
+            {
+                if (p.Equals(functions[i].name))
+                {
+                    return i;
+                }
+            }
+            return -1;
         }
     }
 }

@@ -16,8 +16,10 @@ namespace FractalExplorer
     public partial class Form1 : Form
     {
         public Graphics graphics;
-        ColorF[,] pixels;
+        ColorF[,] my_pixels;
         public Bitmap bmp;
+
+        ColorF barva_mnoziny;
         
         public Brush stet;
         private Pen pero;
@@ -33,6 +35,9 @@ namespace FractalExplorer
         int max_count = 100;
         double prah = 4.0;
 
+        /// <summary>
+        /// Iteration formula
+        /// </summary>
         expression pocitadlo;
 
         float line_width = 1f; 
@@ -51,16 +56,15 @@ namespace FractalExplorer
             putBounds();
 
             osy.Checked = true;
-            pixels = new ColorF[panel1.Width, panel1.Height];
+            my_pixels = new ColorF[panel1.Width, panel1.Height];
             pero = new Pen(Color.Green);
             stet = new SolidBrush(Color.Green);
-            
+            barva_mnoziny = new ColorF(0.2f, 0, 0.2f);
+
             //drawMandel(pixels);
             refreshbmp();
-            
-            
-            drawAxes();
 
+            drawAxes();
             paintIntoPanel();
         }
 
@@ -74,12 +78,19 @@ namespace FractalExplorer
             panel1_Paint(this, null);            
         }
 
+        /// <summary>
+        /// Rewrites bmp with mypixels
+        /// </summary>
         private void refreshbmp()
         {
-            bmp = colorfToBitmap(pixels);
+            bmp = colorfToBitmap(my_pixels);
             graphics = Graphics.FromImage(bmp);
         }
 
+
+        /// <summary>
+        /// Prints bound into according textboxes
+        /// </summary>
         private void putBounds()
         {
             reMaxBox.Text = max.Real.ToString();
@@ -90,11 +101,15 @@ namespace FractalExplorer
 
         }
 
+        /// <summary>
+        /// Resets bounds and maximal count to default values
+        /// i.e. (-2,2) x (-2,2) and 100
+        /// </summary>
         private void resetDraw()
         {
             max = new Complex(2, 2);
             min = new Complex(-2, -2);
-            max_count = 500;
+            max_count = 100;
         }
 
         private void ulozBmp()
@@ -117,6 +132,7 @@ namespace FractalExplorer
             }
 
         }
+
         //vykreslovani do panelu
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
@@ -160,7 +176,7 @@ namespace FractalExplorer
                 max_count = Int32.Parse(iteraci_box.Text);
 
             }catch(Exception){
-                return;
+                max_count = tmp_maxcount;
             }
 
             max = new_max;
@@ -171,7 +187,7 @@ namespace FractalExplorer
                 resetDraw();
             }
 
-            drawMandel(pixels);
+            drawMandel(my_pixels);
             refreshbmp();
             if (osy.Checked)
             {
@@ -180,18 +196,37 @@ namespace FractalExplorer
             paintIntoPanel();
         }
 
+        /// <summary>
+        /// Transforms position on bitmap in pixels into position in
+        /// Gaussian plane
+        /// </summary>
+        /// <param name="i">Transormed into real part</param>
+        /// <param name="j">Transformed into imaginary part</param>
+        /// <returns></returns>
         private Complex pixToCom(int i, int j)
         {
             Complex res = new Complex((double)i * Math.Abs(max.Real - min.Real) / panel1.Width + min.Real,
-                -(double)j * Math.Abs(max.Imaginary - min.Imaginary) / panel1.Height + max.Imaginary);
+                                     -(double)j * Math.Abs(max.Imaginary - min.Imaginary) / panel1.Height + max.Imaginary);
             return res;
         }
 
+        /// <summary>
+        /// Transforms complex number into pixels
+        /// </summary>
+        /// <param name="z"></param>
+        /// <returns></returns>
         private Point comToPix(Complex z)
         {
             return comToPix(z.Real, z.Imaginary);
         }
        
+        /// <summary>
+        /// Transforms complex number into pixel coordinates according to
+        /// current bounds.
+        /// </summary>
+        /// <param name="re">Real part</param>
+        /// <param name="im">Imaginary part</param>
+        /// <returns></returns>
         private Point comToPix(double re, double im)
         {
             Point p = new Point();
@@ -294,6 +329,10 @@ namespace FractalExplorer
             return rv;
         }
 
+        /// <summary>
+        /// Draws axis and labels them
+        /// TODO clean up. change drawing from complex numbers to drawing from pixels
+        /// </summary>
         private void drawAxes()
         {
             graphics.DrawLine(pero, comToPix(-2, 0), comToPix(2, 0));
@@ -311,6 +350,10 @@ namespace FractalExplorer
 
         }
 
+        /// <summary>
+        /// Colors set, ethier mandel or julia, depending on the iteration formula in expression
+        /// </summary>
+        /// <param name="pixels"></param>
         private void drawMandel(ColorF[,] pixels)
         {
             progressBar1.Value = 0;
@@ -322,7 +365,7 @@ namespace FractalExplorer
                     int c = mandelCount(pixToCom(j, i), max_count);
                     if (max_count == c)
                     {
-                        pixels[i, j] = new ColorF(0, 0, 0);//TODO allow changing set color
+                        pixels[i, j] = barva_mnoziny;
                     }
                     else
                     {
@@ -339,10 +382,17 @@ namespace FractalExplorer
 
         }
 
+        /// <summary>
+        /// Calculates number of iterations for number z before it diverges
+        /// or reaches max
+        /// </summary>
+        /// <param name="z"></param>
+        /// <param name="max"></param>
+        /// <returns></returns>
         private int mandelCount(Complex z, int max)
         {
             int i = 0;
-            Complex tmpz = z;
+            Complex tmpz = z;//TODO handle diference between drawing julia and mandel sets
             double fsq = calc.fsq(tmpz);
 
             while (i < max && fsq <= prah)
@@ -354,11 +404,17 @@ namespace FractalExplorer
             return i;
         }
 
+        /// <summary>
+        /// Draws series generated by iteration formula starting at z,
+        /// stops one step after series diverges or after max iterations
+        /// </summary>
+        /// <param name="z"></param>
+        /// <param name="max"></param>
         private void drawSeries(Complex z, int max)
         {
             bool fin = false;
             int i = 0;
-            Complex tmpz = z;
+            Complex tmpz = z;//TODO handle diference between drawing julia and mandel sets
             double fsq = calc.fsq(tmpz);
             
             pero = new Pen(Color.Gray, line_width);
@@ -372,7 +428,7 @@ namespace FractalExplorer
                 }
                 i++;
                 Point b1 = comToPix(tmpz);
-                tmpz = pocitadlo.nextIteration(tmpz,z);
+                tmpz = pocitadlo.nextIteration(tmpz, z);
                 fsq = calc.fsq(tmpz);
                 Point b2 = comToPix(tmpz);
                 graphics.DrawLine(pero, b1, b2 );
@@ -380,6 +436,9 @@ namespace FractalExplorer
             pero = new Pen(Color.Green);
         }
 
+        /// <summary>
+        /// Handles call of drawSeries
+        /// </summary>
         private void vykresli_posl_z_bod()
         {
             Complex z;
@@ -412,6 +471,11 @@ namespace FractalExplorer
             }
         }
 
+        /// <summary>
+        /// If kliknotoR is true creates selection box and saves new bounds
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void panel1_MouseMove(object sender, MouseEventArgs e)
         {//kvuli scalu, prepocet pro klikani, aby se kliklo, kam potrebujeme
             relativePosition.X = (float)(e.X - whiteSpaceLeft) / (panel1.Width - 2 * whiteSpaceLeft);
@@ -499,7 +563,7 @@ namespace FractalExplorer
             resetDraw();
             iteraci_box.Text = max_count.ToString();
             putBounds();
-            nakresli_Click(null, null);
+            //nakresli_Click(null, null);
 
         }
 
@@ -532,14 +596,29 @@ namespace FractalExplorer
         private void vyber_barvu_Click(object sender, EventArgs e)
         {
             colorDialog1.ShowDialog();
-            //TODO set and border color selection
+
+            barva_mnoziny = new ColorF(colorDialog1.Color.R / 255, colorDialog1.Color.G / 255, colorDialog1.Color.B / 255);
+                //TODO border color selection
         }
 
+        /// <summary>
+        /// Handles calling of parser and error reporting
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Pouzit_Click(object sender, EventArgs e)
         {
-            pocitadlo.setExpression(predpis.Text.Replace(" ",""));
+            try
+            {
+                pocitadlo.setExpression(predpis.Text.Replace(" ", ""));
+            }
+            catch (parsingException ex)
+            {
+                MessageBox.Show(ex.Message + " at position " + ex.index.ToString() + " in \"" + predpis.Text.Replace(" ", "")+"\"", "Parsing error");
+                return;
+            }
             //nakresli_Click(this, null);
-            vysledek.Text = pocitadlo.nextIteration(new Complex(1, 0), new Complex(0, 0)).ToString();
+            vysledek.Text = pocitadlo.nextIteration(new Complex(2, 0), new Complex(0, 0)).ToString();
 
         }
 
