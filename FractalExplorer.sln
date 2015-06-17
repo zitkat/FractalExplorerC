@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FractalExplorer", "MandelbrotVisualizer\FractalExplorer.csproj", "{170918C4-2F64-449E-94FF-2F99256AC5FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FractalExplorer", "FractalExplorer\FractalExplorer.csproj", "{170918C4-2F64-449E-94FF-2F99256AC5FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
