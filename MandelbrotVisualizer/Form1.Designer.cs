@@ -29,18 +29,19 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.nakresli = new System.Windows.Forms.Button();
+            this.paint_set = new System.Windows.Forms.Button();
             this.ulozit = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.show_series = new System.Windows.Forms.CheckBox();
+            this.inser_point = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.BodIm = new System.Windows.Forms.TextBox();
-            this.vykresli_bod = new System.Windows.Forms.Button();
+            this.draw_series_but = new System.Windows.Forms.Button();
             this.BodRe = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.vyber_barvu = new System.Windows.Forms.Button();
-            this.osy = new System.Windows.Forms.CheckBox();
+            this.show_axes = new System.Windows.Forms.CheckBox();
             this.reset = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -52,6 +53,7 @@
             this.iteraci_box = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.reMaxBox = new System.Windows.Forms.TextBox();
+            this.set_color_choice = new System.Windows.Forms.Button();
             this.predpis = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -59,13 +61,25 @@
             this.uložitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.konecToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zobrazeníToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.překresliToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.barvyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.množinaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hraniceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.Pouzit = new System.Windows.Forms.Button();
-            this.vysledek = new System.Windows.Forms.Label();
+            this.use_formula = new System.Windows.Forms.Button();
+            this.current_formula = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.ext2_color_disp = new System.Windows.Forms.TextBox();
+            this.ext1_color_disp = new System.Windows.Forms.TextBox();
+            this.exterior_color_choice = new System.Windows.Forms.Button();
+            this.set_color_disp = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -80,19 +94,19 @@
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseUp);
             // 
-            // nakresli
+            // paint_set
             // 
-            this.nakresli.Location = new System.Drawing.Point(22, 208);
-            this.nakresli.Name = "nakresli";
-            this.nakresli.Size = new System.Drawing.Size(75, 23);
-            this.nakresli.TabIndex = 1;
-            this.nakresli.Text = "Překresli";
-            this.nakresli.UseVisualStyleBackColor = true;
-            this.nakresli.Click += new System.EventHandler(this.nakresli_Click);
+            this.paint_set.Location = new System.Drawing.Point(22, 208);
+            this.paint_set.Name = "paint_set";
+            this.paint_set.Size = new System.Drawing.Size(75, 23);
+            this.paint_set.TabIndex = 1;
+            this.paint_set.Text = "Překresli";
+            this.paint_set.UseVisualStyleBackColor = true;
+            this.paint_set.Click += new System.EventHandler(this.paint_set_Click);
             // 
             // ulozit
             // 
-            this.ulozit.Location = new System.Drawing.Point(34, 627);
+            this.ulozit.Location = new System.Drawing.Point(33, 639);
             this.ulozit.Name = "ulozit";
             this.ulozit.Size = new System.Drawing.Size(75, 23);
             this.ulozit.TabIndex = 3;
@@ -111,18 +125,44 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.show_series);
+            this.groupBox1.Controls.Add(this.inser_point);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.BodIm);
-            this.groupBox1.Controls.Add(this.vykresli_bod);
+            this.groupBox1.Controls.Add(this.draw_series_but);
             this.groupBox1.Controls.Add(this.BodRe);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(12, 47);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(116, 126);
+            this.groupBox1.Size = new System.Drawing.Size(116, 174);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Bod";
+            // 
+            // show_series
+            // 
+            this.show_series.AutoSize = true;
+            this.show_series.Checked = true;
+            this.show_series.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.show_series.Location = new System.Drawing.Point(29, 97);
+            this.show_series.Name = "show_series";
+            this.show_series.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.show_series.Size = new System.Drawing.Size(64, 17);
+            this.show_series.TabIndex = 21;
+            this.show_series.Text = "Zobrazit";
+            this.show_series.UseVisualStyleBackColor = true;
+            this.show_series.CheckedChanged += new System.EventHandler(this.show_series_CheckedChanged);
+            // 
+            // inser_point
+            // 
+            this.inser_point.Location = new System.Drawing.Point(21, 145);
+            this.inser_point.Name = "inser_point";
+            this.inser_point.Size = new System.Drawing.Size(75, 23);
+            this.inser_point.TabIndex = 9;
+            this.inser_point.Text = "Vlož";
+            this.inser_point.UseVisualStyleBackColor = true;
+            this.inser_point.Click += new System.EventHandler(this.insert_point_Click);
             // 
             // label4
             // 
@@ -149,15 +189,15 @@
             this.BodIm.Size = new System.Drawing.Size(80, 20);
             this.BodIm.TabIndex = 6;
             // 
-            // vykresli_bod
+            // draw_series_but
             // 
-            this.vykresli_bod.Location = new System.Drawing.Point(22, 97);
-            this.vykresli_bod.Name = "vykresli_bod";
-            this.vykresli_bod.Size = new System.Drawing.Size(75, 23);
-            this.vykresli_bod.TabIndex = 7;
-            this.vykresli_bod.Text = "Nakresli bod";
-            this.vykresli_bod.UseVisualStyleBackColor = true;
-            this.vykresli_bod.Click += new System.EventHandler(this.vykresli_bod_Click);
+            this.draw_series_but.Location = new System.Drawing.Point(21, 116);
+            this.draw_series_but.Name = "draw_series_but";
+            this.draw_series_but.Size = new System.Drawing.Size(75, 23);
+            this.draw_series_but.TabIndex = 7;
+            this.draw_series_but.Text = "Nakresli";
+            this.draw_series_but.UseVisualStyleBackColor = true;
+            this.draw_series_but.Click += new System.EventHandler(this.draw_serires_but_Click);
             // 
             // BodRe
             // 
@@ -168,47 +208,39 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.vyber_barvu);
-            this.groupBox2.Controls.Add(this.osy);
+            this.groupBox2.Controls.Add(this.show_axes);
             this.groupBox2.Controls.Add(this.reset);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.imMinBox);
             this.groupBox2.Controls.Add(this.imMaxBox);
-            this.groupBox2.Controls.Add(this.nakresli);
+            this.groupBox2.Controls.Add(this.paint_set);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.reMinBox);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.iteraci_box);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.reMaxBox);
-            this.groupBox2.Location = new System.Drawing.Point(12, 179);
+            this.groupBox2.Location = new System.Drawing.Point(12, 227);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(115, 275);
+            this.groupBox2.Size = new System.Drawing.Size(115, 240);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Množina";
+            this.groupBox2.Text = "Zobrazení";
             // 
-            // vyber_barvu
+            // show_axes
             // 
-            this.vyber_barvu.Location = new System.Drawing.Point(22, 237);
-            this.vyber_barvu.Name = "vyber_barvu";
-            this.vyber_barvu.Size = new System.Drawing.Size(75, 23);
-            this.vyber_barvu.TabIndex = 14;
-            this.vyber_barvu.Text = "Barva";
-            this.vyber_barvu.UseVisualStyleBackColor = true;
-            this.vyber_barvu.Click += new System.EventHandler(this.vyber_barvu_Click);
-            // 
-            // osy
-            // 
-            this.osy.AutoSize = true;
-            this.osy.Location = new System.Drawing.Point(22, 156);
-            this.osy.Name = "osy";
-            this.osy.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.osy.Size = new System.Drawing.Size(44, 17);
-            this.osy.TabIndex = 20;
-            this.osy.Text = "Osy";
-            this.osy.UseVisualStyleBackColor = true;
+            this.show_axes.AutoSize = true;
+            this.show_axes.Checked = true;
+            this.show_axes.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.show_axes.Location = new System.Drawing.Point(22, 156);
+            this.show_axes.Name = "show_axes";
+            this.show_axes.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.show_axes.Size = new System.Drawing.Size(44, 17);
+            this.show_axes.TabIndex = 20;
+            this.show_axes.Text = "Osy";
+            this.show_axes.UseVisualStyleBackColor = true;
+            this.show_axes.CheckedChanged += new System.EventHandler(this.show_axes_CheckedChanged);
             // 
             // reset
             // 
@@ -304,17 +336,27 @@
             this.reMaxBox.TabIndex = 12;
             this.reMaxBox.TextChanged += new System.EventHandler(this.boundriesBox_TextChanged);
             // 
+            // set_color_choice
+            // 
+            this.set_color_choice.Location = new System.Drawing.Point(21, 19);
+            this.set_color_choice.Name = "set_color_choice";
+            this.set_color_choice.Size = new System.Drawing.Size(75, 23);
+            this.set_color_choice.TabIndex = 14;
+            this.set_color_choice.Text = "Množina";
+            this.set_color_choice.UseVisualStyleBackColor = true;
+            this.set_color_choice.Click += new System.EventHandler(this.set_color_choice_Click);
+            // 
             // predpis
             // 
-            this.predpis.Location = new System.Drawing.Point(94, 21);
+            this.predpis.Location = new System.Drawing.Point(133, 25);
             this.predpis.Name = "predpis";
-            this.predpis.Size = new System.Drawing.Size(486, 20);
+            this.predpis.Size = new System.Drawing.Size(418, 20);
             this.predpis.TabIndex = 9;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 24);
+            this.label1.Location = new System.Drawing.Point(43, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(85, 13);
             this.label1.TabIndex = 11;
@@ -323,7 +365,9 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.souborToolStripMenuItem});
+            this.souborToolStripMenuItem,
+            this.zobrazeníToolStripMenuItem,
+            this.barvyToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(737, 24);
@@ -359,39 +403,142 @@
             this.konecToolStripMenuItem.Text = "Konec";
             this.konecToolStripMenuItem.Click += new System.EventHandler(this.konecToolStripMenuItem_Click);
             // 
+            // zobrazeníToolStripMenuItem
+            // 
+            this.zobrazeníToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.resetToolStripMenuItem,
+            this.překresliToolStripMenuItem});
+            this.zobrazeníToolStripMenuItem.Name = "zobrazeníToolStripMenuItem";
+            this.zobrazeníToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.zobrazeníToolStripMenuItem.Text = "Zobrazení";
+            // 
+            // resetToolStripMenuItem
+            // 
+            this.resetToolStripMenuItem.Name = "resetToolStripMenuItem";
+            this.resetToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.resetToolStripMenuItem.Text = "Reset";
+            this.resetToolStripMenuItem.Click += new System.EventHandler(this.reset_Click);
+            // 
+            // překresliToolStripMenuItem
+            // 
+            this.překresliToolStripMenuItem.Name = "překresliToolStripMenuItem";
+            this.překresliToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.překresliToolStripMenuItem.Text = "Překresli";
+            this.překresliToolStripMenuItem.Click += new System.EventHandler(this.paint_set_Click);
+            // 
+            // barvyToolStripMenuItem
+            // 
+            this.barvyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.množinaToolStripMenuItem,
+            this.hraniceToolStripMenuItem});
+            this.barvyToolStripMenuItem.Name = "barvyToolStripMenuItem";
+            this.barvyToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.barvyToolStripMenuItem.Text = "Barvy";
+            // 
+            // množinaToolStripMenuItem
+            // 
+            this.množinaToolStripMenuItem.Name = "množinaToolStripMenuItem";
+            this.množinaToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.množinaToolStripMenuItem.Text = "Množina";
+            this.množinaToolStripMenuItem.Click += new System.EventHandler(this.set_color_choice_Click);
+            // 
+            // hraniceToolStripMenuItem
+            // 
+            this.hraniceToolStripMenuItem.Name = "hraniceToolStripMenuItem";
+            this.hraniceToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.hraniceToolStripMenuItem.Text = "Hranice";
+            this.hraniceToolStripMenuItem.Click += new System.EventHandler(this.exterior_color_choice_Click);
+            // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(133, 644);
+            this.progressBar1.Location = new System.Drawing.Point(133, 649);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(600, 13);
             this.progressBar1.TabIndex = 13;
             // 
-            // Pouzit
+            // use_formula
             // 
-            this.Pouzit.Location = new System.Drawing.Point(586, 21);
-            this.Pouzit.Name = "Pouzit";
-            this.Pouzit.Size = new System.Drawing.Size(75, 23);
-            this.Pouzit.TabIndex = 14;
-            this.Pouzit.Text = "Použít";
-            this.Pouzit.UseVisualStyleBackColor = true;
-            this.Pouzit.Click += new System.EventHandler(this.Pouzit_Click);
+            this.use_formula.Location = new System.Drawing.Point(557, 22);
+            this.use_formula.Name = "use_formula";
+            this.use_formula.Size = new System.Drawing.Size(75, 23);
+            this.use_formula.TabIndex = 14;
+            this.use_formula.Text = "Použít";
+            this.use_formula.UseVisualStyleBackColor = true;
+            this.use_formula.Click += new System.EventHandler(this.use_formula_from_TextBox_Click);
             // 
-            // vysledek
+            // current_formula
             // 
-            this.vysledek.AutoSize = true;
-            this.vysledek.Location = new System.Drawing.Point(668, 28);
-            this.vysledek.Name = "vysledek";
-            this.vysledek.Size = new System.Drawing.Size(41, 13);
-            this.vysledek.TabIndex = 15;
-            this.vysledek.Text = "label10";
+            this.current_formula.AutoSize = true;
+            this.current_formula.Location = new System.Drawing.Point(638, 28);
+            this.current_formula.Name = "current_formula";
+            this.current_formula.Size = new System.Drawing.Size(41, 13);
+            this.current_formula.TabIndex = 15;
+            this.current_formula.Text = "label10";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.ext2_color_disp);
+            this.groupBox3.Controls.Add(this.ext1_color_disp);
+            this.groupBox3.Controls.Add(this.exterior_color_choice);
+            this.groupBox3.Controls.Add(this.set_color_disp);
+            this.groupBox3.Controls.Add(this.set_color_choice);
+            this.groupBox3.Location = new System.Drawing.Point(12, 473);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(115, 160);
+            this.groupBox3.TabIndex = 16;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Barvy";
+            // 
+            // ext2_color_disp
+            // 
+            this.ext2_color_disp.Enabled = false;
+            this.ext2_color_disp.Location = new System.Drawing.Point(22, 129);
+            this.ext2_color_disp.Name = "ext2_color_disp";
+            this.ext2_color_disp.ReadOnly = true;
+            this.ext2_color_disp.ShortcutsEnabled = false;
+            this.ext2_color_disp.Size = new System.Drawing.Size(74, 20);
+            this.ext2_color_disp.TabIndex = 18;
+            this.ext2_color_disp.TabStop = false;
+            // 
+            // ext1_color_disp
+            // 
+            this.ext1_color_disp.Enabled = false;
+            this.ext1_color_disp.Location = new System.Drawing.Point(22, 103);
+            this.ext1_color_disp.Name = "ext1_color_disp";
+            this.ext1_color_disp.ReadOnly = true;
+            this.ext1_color_disp.Size = new System.Drawing.Size(74, 20);
+            this.ext1_color_disp.TabIndex = 17;
+            this.ext1_color_disp.TabStop = false;
+            // 
+            // exterior_color_choice
+            // 
+            this.exterior_color_choice.Location = new System.Drawing.Point(21, 74);
+            this.exterior_color_choice.Name = "exterior_color_choice";
+            this.exterior_color_choice.Size = new System.Drawing.Size(75, 23);
+            this.exterior_color_choice.TabIndex = 16;
+            this.exterior_color_choice.Text = "Hranice";
+            this.exterior_color_choice.UseVisualStyleBackColor = true;
+            this.exterior_color_choice.Click += new System.EventHandler(this.exterior_color_choice_Click);
+            // 
+            // set_color_disp
+            // 
+            this.set_color_disp.Enabled = false;
+            this.set_color_disp.Location = new System.Drawing.Point(22, 48);
+            this.set_color_disp.Name = "set_color_disp";
+            this.set_color_disp.ReadOnly = true;
+            this.set_color_disp.ShortcutsEnabled = false;
+            this.set_color_disp.Size = new System.Drawing.Size(74, 20);
+            this.set_color_disp.TabIndex = 15;
+            this.set_color_disp.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(737, 662);
-            this.Controls.Add(this.vysledek);
-            this.Controls.Add(this.Pouzit);
+            this.ClientSize = new System.Drawing.Size(737, 666);
+            this.Controls.Add(this.current_formula);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.use_formula);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.predpis);
             this.Controls.Add(this.progressBar1);
@@ -401,6 +548,8 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximumSize = new System.Drawing.Size(753, 704);
+            this.MinimumSize = new System.Drawing.Size(753, 704);
             this.Name = "Form1";
             this.Text = "Fractal Explorer";
             this.groupBox1.ResumeLayout(false);
@@ -409,6 +558,8 @@
             this.groupBox2.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -417,7 +568,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button nakresli;
+        private System.Windows.Forms.Button paint_set;
         private System.Windows.Forms.Button ulozit;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -436,9 +587,9 @@
         private System.Windows.Forms.TextBox reMaxBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox reMinBox;
-        private System.Windows.Forms.Button vykresli_bod;
+        private System.Windows.Forms.Button draw_series_but;
         private System.Windows.Forms.Button reset;
-        private System.Windows.Forms.CheckBox osy;
+        private System.Windows.Forms.CheckBox show_axes;
         private System.Windows.Forms.TextBox predpis;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -447,10 +598,23 @@
         private System.Windows.Forms.ToolStripMenuItem konecToolStripMenuItem;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.Button vyber_barvu;
+        private System.Windows.Forms.Button set_color_choice;
         private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.Button Pouzit;
-        private System.Windows.Forms.Label vysledek;
+        private System.Windows.Forms.Button use_formula;
+        private System.Windows.Forms.Label current_formula;
+        private System.Windows.Forms.Button inser_point;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button exterior_color_choice;
+        private System.Windows.Forms.TextBox set_color_disp;
+        private System.Windows.Forms.TextBox ext1_color_disp;
+        private System.Windows.Forms.TextBox ext2_color_disp;
+        private System.Windows.Forms.CheckBox show_series;
+        private System.Windows.Forms.ToolStripMenuItem zobrazeníToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem překresliToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem barvyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem množinaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hraniceToolStripMenuItem;
     }
 }
 

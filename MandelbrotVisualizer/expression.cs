@@ -10,8 +10,6 @@ namespace FractalExplorer
 {
     class expression
     {
-        
-
         struct tok{
             public int index { get; private set; }  /* index of token start in parsed expression, for error reporting */
             public int op_num { get; private set; }  /* number of operation in array of unary (math. functions) or
@@ -25,16 +23,21 @@ namespace FractalExplorer
 			          (,) - for left or right parenthesis respectively
 			          n - number
 			          z or c - variable
-			      */
-            public String msg { get; private set; }  /* error message for error tokens */
-        
-            public tok(int index, int op_num, Complex value, char tag, String msg): this()
+			      */        
+            public tok(int index, int op_num, Complex value, char tag): this()
             {
                 this.index = index;
                 this.op_num = op_num;
                 this.value = value;
                 this.tag = tag;
-                this.msg = msg;
+            }
+            public tok(int index, int op_num, char tag)
+                : this()
+            {
+                this.index = index;
+                this.op_num = op_num;
+                this.value = new Complex();
+                this.tag = tag;
             }
         }
 
@@ -43,7 +46,7 @@ namespace FractalExplorer
 
         int position = 0;//position in parsed string
 
-        public Complex nextIteration(Complex z, Complex c)
+        public Complex value_at(Complex z, Complex c)
         {
            
             tok  work_tok;
@@ -55,9 +58,7 @@ namespace FractalExplorer
             for (int i = 0; i < len; i++)
             {
                 //TODO optimize?
-                work_tok = expr[i];
-
-                /*print_tok(work_tok);*/
+                work_tok = expr[i];             
                 switch (work_tok.tag)
                 {
                     case 'n':
@@ -72,7 +73,6 @@ namespace FractalExplorer
                     case 'f':
                         if (s.Count < 1)
                         {
-                            /*printf("No arguments for function.\n");*/
                             throw new parsingException("No arguments for function", work_tok.index);//probably can't happen
                         }
                         else
@@ -84,8 +84,7 @@ namespace FractalExplorer
                         break;
                     case 'b':
                         if (s.Count < 2)
-                        {
-                            /*printf("Missing operand for bin op.\n");*/
+                        {         
                             throw new parsingException("Missing operand for bin op", work_tok.index);//probably can't happen
                         }
                         else
@@ -109,9 +108,10 @@ namespace FractalExplorer
 	        return work_num;
         }
 
-        public void setExpression(String s)
+
+        public void set_expression(String s)
         {
-            parseExp(s);
+            parse(s);
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace FractalExplorer
         /// with tokens representing parsed expression in reverse polish notation.
         /// </summary>
         /// <param name="s"></param>
-        private void parseExp(String s)  
+        private void parse(String s)  
         {
             expr = new tok[s.Length];
             int i=0;
@@ -221,7 +221,7 @@ namespace FractalExplorer
                                     if (work_tok.tag == 'f')
                                     {
                                         work_tok = stack.Pop();
-                                        expr[i] = curr_tok;
+                                        expr[i] = work_tok;
                                         i++;
                                     }
                                 }
@@ -272,38 +272,37 @@ namespace FractalExplorer
 	        int t_pos = position;
 	        Complex val;
 
-            //if(!(next && expr && position)){
-            //    return;
-            //}
-
 	        switch(expr[t_pos]){
 		        case '(':
 		        case ')':
 			        position++; 
-			        return new tok (position, -1, new Complex(0,0), expr[t_pos], "(,)");
+			        return new tok (position, -1, expr[t_pos]);
 		        case '^':
 		        case '+':
 		        case '*':
 		        case '/':
 			        position++; 
-			        return new tok (position, calc.get_binop_num(expr[t_pos]), new Complex(0,0),'b', "+,*,/,^");;
+			        return new tok (position, calc.get_binop_num(expr[t_pos]), 'b');;
 		        case 'z':
 			        position++; 
-			        return new tok (position, -1, new Complex(0,0), 'z', "z");
+			        return new tok (position, -1, 'z');
                 case 'c':
                     position++; 
-			        return new tok (position, -1, new Complex(0,0), 'c', "c");
+			        return new tok (position, -1, 'c');
+                case 'i':
+                    position++;
+                    return new tok(position, -1, new Complex(0, 1),'n');
 		        case '-':
 			          if(t_pos-1 < 0){/*'-' is at the star of the string => it's unary*/
 				          position++; 
-				          return new tok (position, calc.get_func_num("-"), new Complex(0,0), 'f', "-");
+				          return new tok (position, calc.get_func_num("-"), new Complex(0,0), 'f');
 			          }else if( is_bin_op(expr[t_pos-1]) || expr[t_pos-1]=='(' ){
 				          /* '-' is inside of the string then it's unary if there is binary operation or left parentheses preceding it*/
 				          position++; 
-				          return new tok (position, calc.get_func_num("-"), new Complex(0,0), 'f', "-");
+				          return new tok (position, calc.get_func_num("-"), 'f');
 			          }
 			          position++; 
-			          return new tok (position, calc.get_binop_num(expr[t_pos]), new Complex(0,0), 'b', "-");
+			          return new tok (position, calc.get_binop_num(expr[t_pos]),'b');
 		        default:
 			        if(is_func_id(expr[t_pos])){
 				        func_name="";
@@ -313,15 +312,14 @@ namespace FractalExplorer
 				        }
 				        //func_name="";
 				        func_num = calc.get_func_num(func_name);
-				        if(func_num < 0){
-                            return new tok(position, -1, new Complex(0, 0), 'e', "Unknown function");
+				        if(func_num < 0){  
+                            throw new parsingException("Unknown function", position);
 				        }else{
 					        position = t_pos; 
-					        return new tok(position, func_num, new Complex(0, 0),'f',"");
+					        return new tok(position, func_num,'f');
 				        }
 			        }
 
-                    //TODO obtain string containig complex number and parse it
 			        if(is_digit(expr, t_pos)){
 				         num="";
                          while (t_pos < expr.Length && is_digit(expr, t_pos))
@@ -331,15 +329,24 @@ namespace FractalExplorer
                          }
                          try
                          {
-                             val = new Complex(Double.Parse(num), 0);
+                             if (t_pos < expr.Length && expr[t_pos] == 'i')
+                             {
+                                 val = new Complex(0, Double.Parse(num));
+                                 t_pos++;
+                             }
+                             else
+                             {
+                                 val = new Complex(Double.Parse(num), 0);
+                             }
                          }
                          catch(Exception e)
                          {
                              throw new parsingException("Error parsing number", position);
                          }
 					    position = t_pos; 
-					    return new tok(position, -1, val, 'n', "");
+					    return new tok(position, -1, val, 'n');
 			        }
+
 			        position++;
                     throw new parsingException("Invalid character", position);
 	        }
@@ -380,7 +387,6 @@ namespace FractalExplorer
         {
             return ('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z');
         }
-
 
         /// <summary>
         /// Returns true if char tag is found in string expecting

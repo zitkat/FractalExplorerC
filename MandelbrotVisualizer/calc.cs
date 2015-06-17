@@ -9,7 +9,7 @@ using System.Numerics;
 namespace FractalExplorer
 {
 
-    delegate Complex my_bin(Complex o1, Complex o2);/*operation reference*/
+    delegate Complex my_bin(Complex o1, Complex o2);
     delegate Complex my_f(Complex o);
 
     struct binop
@@ -26,7 +26,7 @@ namespace FractalExplorer
 
     struct func
     {
-        public String name { get; set; }/*operation symbol*/
+        public String name { get; set; }/*function name*/
         public my_f function_del { get; set; }
 
         public Complex operation(Complex o)
@@ -46,11 +46,12 @@ namespace FractalExplorer
                                                     new binop{op = '^', operation_del = pow},
                                                 };
         public static func[] functions = {
-                                             new func{name = "-", function_del = u_minus}
+                                             new func{name = "-", function_del = u_minus},
+                                             new func{name = "exp" , function_del = Complex.Exp}
                                          };
 
         /// <summary>
-        /// Returns square of euklidean norm of input complex number z
+        /// Returns square of euclidean norm of input complex number z
         /// </summary>
         /// <param name="z">complex number</param>
         /// <returns></returns>
@@ -65,7 +66,7 @@ namespace FractalExplorer
         /// </summary>
         /// <param name="c"></param>
         /// <returns></returns>
-        public static int get_binop_num(char c)
+        internal static int get_binop_num(char c)
         {
             int i = 0;
             for (i = 0; i < binary_operations.Length; ++i)
@@ -76,6 +77,24 @@ namespace FractalExplorer
                 }
             }
 
+            return -1;
+        }
+
+        /// <summary>
+        /// Returns function number in the table of binary operations
+        /// Returns -1 if function isn't in the table
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
+        internal static int get_func_num(string p)
+        {
+            for (int i = 0; i < functions.Length; i++)
+            {
+                if (p.Equals(functions[i].name))
+                {
+                    return i;
+                }
+            }
             return -1;
         }
 
@@ -144,16 +163,6 @@ namespace FractalExplorer
             return -o;
         }
 
-        internal static int get_func_num(string p)
-        {
-            for (int i = 0; i < functions.Length; i++)
-            {
-                if (p.Equals(functions[i].name))
-                {
-                    return i;
-                }
-            }
-            return -1;
-        }
+        
     }
 }
