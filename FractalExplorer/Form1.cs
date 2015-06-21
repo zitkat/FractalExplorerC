@@ -52,6 +52,9 @@ namespace FractalExplorer
             max = new Complex(2, 2);
             min = new Complex(-2, -2);
 
+            BodIm.Text = "0";
+            BodRe.Text = "0";
+
             predpis.Text = "z^2 + c";
             use_formula_from_TextBox_Click(this, null);
 
@@ -591,6 +594,7 @@ namespace FractalExplorer
         private void draw_serires_but_Click(object sender, EventArgs e)
         {
             draw_series_point_from_TextBox();
+            show_series.Checked = true;
             paint_into_panel();
         }
 
@@ -648,7 +652,9 @@ namespace FractalExplorer
             }
             catch (parsingException ex)
             {
-                MessageBox.Show(ex.Message + " at position " + ex.index.ToString() + " in \"" + predpis.Text.Replace(" ", "")+"\"", "Parsing error");
+                MessageBox.Show(ex.Message + " na pozici " + ex.index.ToString() + " v: \"" 
+                                + predpis.Text.Replace(" ", "")+"\"",
+                                "Chyba při parsování");
                 return;
             }
             current_formula.Text = predpis.Text.Replace(" ", "");
@@ -662,7 +668,10 @@ namespace FractalExplorer
         /// <param name="e"></param>
         private void insert_point_Click(object sender, EventArgs e)
         {
-            predpis.Text += BodRe.Text + " + " + BodIm.Text + "i"; 
+
+           // predpis.Text += "("+BodRe.Text + " + " + BodIm.Text + "i"+")";
+            predpis.Text = predpis.Text.Replace("c", "(" + BodRe.Text + " + " + BodIm.Text + "i" + ")");
+
         }
 
         private void exterior_color_choice_Click(object sender, EventArgs e)

@@ -47,7 +47,8 @@ namespace FractalExplorer
                                                 };
         public static func[] functions = {
                                              new func{name = "-", function_del = u_minus},
-                                             new func{name = "exp" , function_del = Complex.Exp}
+                                             new func{name = "exp" , function_del = Complex.Exp},
+                                             new func{name = "log", function_del = Complex.Log}
                                          };
 
         /// <summary>

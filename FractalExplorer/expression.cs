@@ -73,7 +73,7 @@ namespace FractalExplorer
                     case 'f':
                         if (s.Count < 1)
                         {
-                            throw new parsingException("No arguments for function", work_tok.index);//probably can't happen
+                            throw new parsingException("Chybí argument funkce", work_tok.index);//probably can't happen
                         }
                         else
                         {
@@ -85,7 +85,7 @@ namespace FractalExplorer
                     case 'b':
                         if (s.Count < 2)
                         {         
-                            throw new parsingException("Missing operand for bin op", work_tok.index);//probably can't happen
+                            throw new parsingException("Chybí operand binární operace", work_tok.index);//probably can't happen
                         }
                         else
                         {
@@ -211,7 +211,7 @@ namespace FractalExplorer
                             }
                             if (work_tok.tag != '(')
                             {/*left parenthesis not found*/
-                                throw new parsingException("Unmatched right parenthesis", curr_tok.index);
+                                throw new parsingException("Nadbytečná pravá závorka", curr_tok.index);
                             }
                             else
                             {
@@ -232,12 +232,12 @@ namespace FractalExplorer
                 }
                 else
                 {
-                    throw new parsingException("Unexpected token", curr_tok.index);
+                    throw new parsingException("Neočekávaný symbol", curr_tok.index);
                 }
             }
             if (is_expected('(', expecting) || is_expected('n', expecting) || is_expected('z', expecting) || is_expected('c', expecting))
             {
-                throw new parsingException("Expected more tokens after token", position);
+                throw new parsingException("Očekávány další symboly", position);
 	        }
             /*
              * Dump rest of the operators to the queue
@@ -246,7 +246,7 @@ namespace FractalExplorer
 		        work_tok = stack.Pop();
 		        if(work_tok.tag == '('){
                     /*all parenthesis should've been popped by their counterparts*/
-                    throw new parsingException("Unmatched left parenthesis '('", work_tok.index);
+                    throw new parsingException("Neuzavřená levá závorka '('", work_tok.index);
                 }
 		        expr[i] = work_tok;
                 i++;
@@ -313,7 +313,7 @@ namespace FractalExplorer
 				        //func_name="";
 				        func_num = calc.get_func_num(func_name);
 				        if(func_num < 0){  
-                            throw new parsingException("Unknown function", position);
+                            throw new parsingException("Neznámá funkce", position);
 				        }else{
 					        position = t_pos; 
 					        return new tok(position, func_num,'f');
@@ -341,14 +341,14 @@ namespace FractalExplorer
                          }
                          catch(Exception e)
                          {
-                             throw new parsingException("Error parsing number", position);
+                             throw new parsingException("Chyba v čísle", position);
                          }
 					    position = t_pos; 
 					    return new tok(position, -1, val, 'n');
 			        }
 
 			        position++;
-                    throw new parsingException("Invalid character", position);
+                    throw new parsingException("Nepovolený znak", position);
 	        }
 
         }
