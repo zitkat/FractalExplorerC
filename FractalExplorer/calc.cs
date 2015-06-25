@@ -48,7 +48,11 @@ namespace FractalExplorer
         public static func[] functions = {
                                              new func{name = "-", function_del = u_minus},
                                              new func{name = "exp" , function_del = Complex.Exp},
-                                             new func{name = "log", function_del = Complex.Log}
+                                             new func{name = "log", function_del = Complex.Log},
+                                             new func{name = "abs", function_del = my_Abs },
+                                             new func{name = "sdr", function_del = Complex.Conjugate},
+                                             new func{name = "sin" , function_del=Complex.Sin},
+                                             new func{name = "sinh", function_del = Complex.Sinh}
                                          };
 
         /// <summary>
@@ -97,6 +101,11 @@ namespace FractalExplorer
                 }
             }
             return -1;
+        }
+
+        public static Complex my_Abs(Complex z)
+        {
+            return new Complex(Complex.Abs(z), 0);
         }
 
         /// <summary>

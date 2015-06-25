@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows;
 using System.Numerics;
+using System.Diagnostics;
 
 namespace FractalExplorer
 {
@@ -20,7 +21,7 @@ namespace FractalExplorer
         public Bitmap bmp;
 
         ColorF set_color;
-        ColorF ext1, ext2 ;
+        ColorF ext_col1, ext_col2 ;
         
         public Brush stet;
         private Pen pero;
@@ -59,6 +60,7 @@ namespace FractalExplorer
             use_formula_from_TextBox_Click(this, null);
 
             iteraci_box.Text = max_count.ToString();
+            textBox_threshold.Text = threshold.ToString();
 
             putBounds();
 
@@ -69,10 +71,10 @@ namespace FractalExplorer
             set_color = new ColorF(0f, 0, 0.2f);
             set_color_disp.BackColor = colorFToColor(set_color);
 
-            ext1 = new ColorF(1f, 1f, 0f);
-            ext1_color_disp.BackColor = colorFToColor(ext1);
-            ext2 = new ColorF(.3f, 0, .8f);
-            ext2_color_disp.BackColor = colorFToColor(ext2);
+            ext_col1 = new ColorF(1f, 1f, 0f);
+            ext1_color_disp.BackColor = colorFToColor(ext_col1);
+            ext_col2 = new ColorF(.3f, 0, .8f);
+            ext2_color_disp.BackColor = colorFToColor(ext_col2);
 
             color_set(my_pixels);
             refresh_bmp();
@@ -204,6 +206,7 @@ namespace FractalExplorer
             try
             {
                 max_count = Int32.Parse(iteraci_box.Text);
+                threshold = Int32.Parse(textBox_threshold.Text);
 
             }catch(Exception){
                 max_count = tmp_maxcount;
@@ -269,7 +272,7 @@ namespace FractalExplorer
 
         private ColorF colorToColorF(Color c)
         {
-            return new ColorF(c.R / 255, c.G / 255, c.B / 255);
+            return new ColorF((float)c.R / 255, (float)c.G / 255, (float)c.B / 255);
         }
 
         private ColorF[,] bitmapToColorf(Bitmap souce)
@@ -393,6 +396,8 @@ namespace FractalExplorer
         /// <param name="pixels"></param>
         private void color_set(ColorF[,] pixels)
         {
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
             progressBar1.Value = 0;
             for (int i = 0; i < pixels.GetLength(0); i++)
             {
@@ -407,17 +412,23 @@ namespace FractalExplorer
                     else
                     {
                           pixels[i, j] = new ColorF(
-                                     ext1.r * (float)c/max_count + ext2.r*(1-(float)c/max_count),
-                                     ext1.g * (float)c/max_count + ext2.g*(1-(float)c/max_count),
-                                     ext1.b * (float)c/max_count + ext2.b*(1-(float)c/max_count));  
+                                     ext_col1.r * (float)c/max_count + ext_col2.r*(1-(float)c/max_count),
+                                     ext_col1.g * (float)c/max_count + ext_col2.g*(1-(float)c/max_count),
+                                     ext_col1.b * (float)c/max_count + ext_col2.b*(1-(float)c/max_count));  
                     }
-
+                    
                 }
                 if (i != 0)
                 {
                     progressBar1.Value = (int)Math.Round((double)i / panel1.Width  * 100);
                 }
             }
+            stopWatch.Stop();
+            TimeSpan ts = stopWatch.Elapsed;
+            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+          ts.Hours, ts.Minutes, ts.Seconds,
+          ts.Milliseconds / 10);
+            textBox_time.Text = elapsedTime;
         }
 
         /// <summary>
@@ -602,6 +613,7 @@ namespace FractalExplorer
         {
             resetDraw();
             iteraci_box.Text = max_count.ToString();
+            textBox_threshold.Text = threshold.ToString();
             putBounds();
         }
 
@@ -677,11 +689,11 @@ namespace FractalExplorer
         private void exterior_color_choice_Click(object sender, EventArgs e)
         {
             colorDialog1.ShowDialog();
-            ext1 = colorToColorF(colorDialog1.Color);
+            ext_col1 = colorToColorF(colorDialog1.Color);
             ext1_color_disp.BackColor = colorDialog1.Color;
 
             colorDialog1.ShowDialog();
-            ext2 = colorToColorF(colorDialog1.Color);
+            ext_col2 = colorToColorF(colorDialog1.Color);
             ext2_color_disp.BackColor = colorDialog1.Color;
         }
 

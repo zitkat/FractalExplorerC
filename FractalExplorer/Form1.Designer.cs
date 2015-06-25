@@ -76,6 +76,9 @@
             this.ext1_color_disp = new System.Windows.Forms.TextBox();
             this.exterior_color_choice = new System.Windows.Forms.Button();
             this.set_color_disp = new System.Windows.Forms.TextBox();
+            this.textBox_time = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBox_threshold = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -84,7 +87,7 @@
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(133, 47);
+            this.panel1.Location = new System.Drawing.Point(132, 47);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(600, 600);
             this.panel1.TabIndex = 0;
@@ -96,7 +99,7 @@
             // 
             // paint_set
             // 
-            this.paint_set.Location = new System.Drawing.Point(22, 208);
+            this.paint_set.Location = new System.Drawing.Point(22, 229);
             this.paint_set.Name = "paint_set";
             this.paint_set.Size = new System.Drawing.Size(75, 23);
             this.paint_set.TabIndex = 1;
@@ -106,7 +109,7 @@
             // 
             // ulozit
             // 
-            this.ulozit.Location = new System.Drawing.Point(33, 639);
+            this.ulozit.Location = new System.Drawing.Point(29, 639);
             this.ulozit.Name = "ulozit";
             this.ulozit.Size = new System.Drawing.Size(75, 23);
             this.ulozit.TabIndex = 3;
@@ -133,9 +136,9 @@
             this.groupBox1.Controls.Add(this.draw_series_but);
             this.groupBox1.Controls.Add(this.BodRe);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(12, 47);
+            this.groupBox1.Location = new System.Drawing.Point(11, 44);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(116, 174);
+            this.groupBox1.Size = new System.Drawing.Size(116, 159);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Bod";
@@ -145,7 +148,7 @@
             this.show_series.AutoSize = true;
             this.show_series.Checked = true;
             this.show_series.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.show_series.Location = new System.Drawing.Point(29, 97);
+            this.show_series.Location = new System.Drawing.Point(29, 80);
             this.show_series.Name = "show_series";
             this.show_series.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.show_series.Size = new System.Drawing.Size(64, 17);
@@ -156,7 +159,7 @@
             // 
             // inser_point
             // 
-            this.inser_point.Location = new System.Drawing.Point(21, 145);
+            this.inser_point.Location = new System.Drawing.Point(22, 132);
             this.inser_point.Name = "inser_point";
             this.inser_point.Size = new System.Drawing.Size(75, 23);
             this.inser_point.TabIndex = 9;
@@ -167,7 +170,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 74);
+            this.label4.Location = new System.Drawing.Point(9, 57);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(21, 13);
             this.label4.TabIndex = 8;
@@ -176,7 +179,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 48);
+            this.label3.Location = new System.Drawing.Point(6, 35);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(24, 13);
             this.label3.TabIndex = 7;
@@ -184,14 +187,14 @@
             // 
             // BodIm
             // 
-            this.BodIm.Location = new System.Drawing.Point(29, 71);
+            this.BodIm.Location = new System.Drawing.Point(29, 54);
             this.BodIm.Name = "BodIm";
             this.BodIm.Size = new System.Drawing.Size(80, 20);
             this.BodIm.TabIndex = 6;
             // 
             // draw_series_but
             // 
-            this.draw_series_but.Location = new System.Drawing.Point(21, 116);
+            this.draw_series_but.Location = new System.Drawing.Point(22, 103);
             this.draw_series_but.Name = "draw_series_but";
             this.draw_series_but.Size = new System.Drawing.Size(75, 23);
             this.draw_series_but.TabIndex = 7;
@@ -201,13 +204,15 @@
             // 
             // BodRe
             // 
-            this.BodRe.Location = new System.Drawing.Point(29, 45);
+            this.BodRe.Location = new System.Drawing.Point(29, 32);
             this.BodRe.Name = "BodRe";
             this.BodRe.Size = new System.Drawing.Size(80, 20);
             this.BodRe.TabIndex = 5;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label10);
+            this.groupBox2.Controls.Add(this.textBox_threshold);
             this.groupBox2.Controls.Add(this.show_axes);
             this.groupBox2.Controls.Add(this.reset);
             this.groupBox2.Controls.Add(this.label9);
@@ -221,9 +226,9 @@
             this.groupBox2.Controls.Add(this.iteraci_box);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.reMaxBox);
-            this.groupBox2.Location = new System.Drawing.Point(12, 227);
+            this.groupBox2.Location = new System.Drawing.Point(11, 205);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(115, 240);
+            this.groupBox2.Size = new System.Drawing.Size(115, 262);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Zobrazení";
@@ -233,7 +238,7 @@
             this.show_axes.AutoSize = true;
             this.show_axes.Checked = true;
             this.show_axes.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.show_axes.Location = new System.Drawing.Point(22, 156);
+            this.show_axes.Location = new System.Drawing.Point(22, 177);
             this.show_axes.Name = "show_axes";
             this.show_axes.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.show_axes.Size = new System.Drawing.Size(44, 17);
@@ -244,7 +249,7 @@
             // 
             // reset
             // 
-            this.reset.Location = new System.Drawing.Point(22, 179);
+            this.reset.Location = new System.Drawing.Point(22, 200);
             this.reset.Name = "reset";
             this.reset.Size = new System.Drawing.Size(75, 23);
             this.reset.TabIndex = 18;
@@ -255,7 +260,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(11, 74);
+            this.label9.Location = new System.Drawing.Point(11, 102);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(44, 13);
             this.label9.TabIndex = 17;
@@ -264,7 +269,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(14, 133);
+            this.label8.Location = new System.Drawing.Point(14, 154);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(41, 13);
             this.label8.TabIndex = 15;
@@ -272,7 +277,7 @@
             // 
             // imMinBox
             // 
-            this.imMinBox.Location = new System.Drawing.Point(53, 130);
+            this.imMinBox.Location = new System.Drawing.Point(53, 151);
             this.imMinBox.Name = "imMinBox";
             this.imMinBox.Size = new System.Drawing.Size(56, 20);
             this.imMinBox.TabIndex = 14;
@@ -280,7 +285,7 @@
             // 
             // imMaxBox
             // 
-            this.imMaxBox.Location = new System.Drawing.Point(53, 71);
+            this.imMaxBox.Location = new System.Drawing.Point(53, 99);
             this.imMaxBox.Name = "imMaxBox";
             this.imMaxBox.Size = new System.Drawing.Size(56, 20);
             this.imMaxBox.TabIndex = 16;
@@ -289,7 +294,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 107);
+            this.label6.Location = new System.Drawing.Point(11, 128);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(44, 13);
             this.label6.TabIndex = 11;
@@ -297,7 +302,7 @@
             // 
             // reMinBox
             // 
-            this.reMinBox.Location = new System.Drawing.Point(53, 104);
+            this.reMinBox.Location = new System.Drawing.Point(53, 125);
             this.reMinBox.Name = "reMinBox";
             this.reMinBox.Size = new System.Drawing.Size(56, 20);
             this.reMinBox.TabIndex = 10;
@@ -322,7 +327,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(9, 48);
+            this.label7.Location = new System.Drawing.Point(9, 76);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(47, 13);
             this.label7.TabIndex = 13;
@@ -330,7 +335,7 @@
             // 
             // reMaxBox
             // 
-            this.reMaxBox.Location = new System.Drawing.Point(53, 45);
+            this.reMaxBox.Location = new System.Drawing.Point(53, 73);
             this.reMaxBox.Name = "reMaxBox";
             this.reMaxBox.Size = new System.Drawing.Size(56, 20);
             this.reMaxBox.TabIndex = 12;
@@ -370,7 +375,7 @@
             this.barvyToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(737, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(734, 24);
             this.menuStrip1.TabIndex = 12;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -451,9 +456,9 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(133, 649);
+            this.progressBar1.Location = new System.Drawing.Point(133, 653);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(600, 13);
+            this.progressBar1.Size = new System.Drawing.Size(529, 12);
             this.progressBar1.TabIndex = 13;
             // 
             // use_formula
@@ -482,7 +487,7 @@
             this.groupBox3.Controls.Add(this.exterior_color_choice);
             this.groupBox3.Controls.Add(this.set_color_disp);
             this.groupBox3.Controls.Add(this.set_color_choice);
-            this.groupBox3.Location = new System.Drawing.Point(12, 473);
+            this.groupBox3.Location = new System.Drawing.Point(11, 473);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(115, 160);
             this.groupBox3.TabIndex = 16;
@@ -531,11 +536,36 @@
             this.set_color_disp.TabIndex = 15;
             this.set_color_disp.TabStop = false;
             // 
+            // textBox_time
+            // 
+            this.textBox_time.Location = new System.Drawing.Point(668, 649);
+            this.textBox_time.Name = "textBox_time";
+            this.textBox_time.ReadOnly = true;
+            this.textBox_time.Size = new System.Drawing.Size(65, 20);
+            this.textBox_time.TabIndex = 17;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(11, 48);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(32, 13);
+            this.label10.TabIndex = 22;
+            this.label10.Text = "Práh:";
+            // 
+            // textBox_threshold
+            // 
+            this.textBox_threshold.Location = new System.Drawing.Point(53, 45);
+            this.textBox_threshold.Name = "textBox_threshold";
+            this.textBox_threshold.Size = new System.Drawing.Size(56, 20);
+            this.textBox_threshold.TabIndex = 21;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(737, 666);
+            this.ClientSize = new System.Drawing.Size(734, 672);
+            this.Controls.Add(this.textBox_time);
             this.Controls.Add(this.current_formula);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.use_formula);
@@ -548,8 +578,8 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximumSize = new System.Drawing.Size(753, 704);
-            this.MinimumSize = new System.Drawing.Size(753, 704);
+            this.MaximumSize = new System.Drawing.Size(750, 710);
+            this.MinimumSize = new System.Drawing.Size(750, 710);
             this.Name = "Form1";
             this.Text = "Fractal Explorer";
             this.groupBox1.ResumeLayout(false);
@@ -615,6 +645,9 @@
         private System.Windows.Forms.ToolStripMenuItem barvyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem množinaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hraniceToolStripMenuItem;
+        private System.Windows.Forms.TextBox textBox_time;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox textBox_threshold;
     }
 }
 

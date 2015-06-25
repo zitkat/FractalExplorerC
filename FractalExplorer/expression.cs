@@ -115,7 +115,7 @@ namespace FractalExplorer
         }
 
         /// <summary>
-        /// Parses mathematical expression s in infix notation, fills array expr
+        /// Parses mathematical expression s in infix notation, fills array this.expr
         /// with tokens representing parsed expression in reverse polish notation.
         /// </summary>
         /// <param name="s"></param>
@@ -143,7 +143,7 @@ namespace FractalExplorer
                     {
                         case 'c':
                         case 'z':
-                        case 'n': /*if token is a number or variable it is added to the output queue*/
+                        case 'n': /*if token is a number or variable it is added to the output array*/
                             expr[i]=curr_tok;//appends curr_tok at end of expression
                             i++;
                             expecting = ")b";
@@ -240,7 +240,7 @@ namespace FractalExplorer
                 throw new parsingException("Očekávány další symboly", position);
 	        }
             /*
-             * Dump rest of the operators to the queue
+             * Dump rest of the operators to the array
              */
 	        while(stack.Count>0){
 		        work_tok = stack.Pop();
@@ -310,7 +310,6 @@ namespace FractalExplorer
 					        func_name += expr[t_pos];
 					        t_pos++;
 				        }
-				        //func_name="";
 				        func_num = calc.get_func_num(func_name);
 				        if(func_num < 0){  
                             throw new parsingException("Neznámá funkce", position);
@@ -346,7 +345,6 @@ namespace FractalExplorer
 					    position = t_pos; 
 					    return new tok(position, -1, val, 'n');
 			        }
-
 			        position++;
                     throw new parsingException("Nepovolený znak", position);
 	        }
