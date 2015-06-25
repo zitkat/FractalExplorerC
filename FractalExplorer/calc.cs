@@ -52,7 +52,11 @@ namespace FractalExplorer
                                              new func{name = "abs", function_del = my_Abs },
                                              new func{name = "sdr", function_del = Complex.Conjugate},
                                              new func{name = "sin" , function_del=Complex.Sin},
-                                             new func{name = "sinh", function_del = Complex.Sinh}
+                                             new func{name = "sinh", function_del = Complex.Sinh},
+                                             new func{name = "arcsin", function_del = Complex.Asin},
+                                             new func{name = "tg", function_del = Complex.Tan},
+                                             new func{name = "atg", function_del = Complex.Atan},
+                                             new func{name = "tgh", function_del = Complex.Tanh}
                                          };
 
         /// <summary>
