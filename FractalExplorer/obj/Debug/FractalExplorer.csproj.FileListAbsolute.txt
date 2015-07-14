@@ -12,7 +12,8 @@ C:\Users\tomas\FractalExplorer\FractalExplorer\obj\Debug\FractalExplorer.exe
 C:\Users\tomas\FractalExplorer\FractalExplorer\obj\Debug\FractalExplorer.pdb
 C:\Users\tomas\FractalExplorer\FractalExplorer\bin\Debug\FractalExplorer.exe
 C:\Users\tomas\FractalExplorer\FractalExplorer\bin\Debug\FractalExplorer.pdb
-C:\Users\tomas\FractalExplorer\FractalExplorer\obj\Debug\FractalExplorer.csprojResolveAssemblyReference.cache
 C:\Users\tomas\FractalExplorer\FractalExplorer\obj\Debug\FractalExplorer.Form1.resources
 C:\Users\tomas\FractalExplorer\FractalExplorer\obj\Debug\FractalExplorer.Properties.Resources.resources
 C:\Users\tomas\FractalExplorer\FractalExplorer\obj\Debug\FractalExplorer.csproj.GenerateResource.Cache
+C:\Users\tomas\FractalExplorer\FractalExplorer\obj\Debug\FractalExplorer.csprojResolveAssemblyReference.cache
+C:\Users\tomas\FractalExplorer\FractalExplorer\bin\Debug\vstup.dat

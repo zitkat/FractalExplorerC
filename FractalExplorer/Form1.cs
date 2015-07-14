@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Windows;
 using System.Numerics;
 using System.Diagnostics;
+using System.IO;
 
 namespace FractalExplorer
 {
@@ -58,6 +59,7 @@ namespace FractalExplorer
 
             predpis.Text = "z^2 + c";
             use_formula_from_TextBox_Click(this, null);
+            load_presets();
 
             iteraci_box.Text = max_count.ToString();
             textBox_threshold.Text = threshold.ToString();
@@ -670,6 +672,29 @@ namespace FractalExplorer
             }
             current_formula.Text = predpis.Text.Replace(" ", "");
 
+        }
+
+
+        private void load_presets()
+        {
+            try
+            {
+                StreamReader sr = new StreamReader("vstup.dat");
+                while (!sr.EndOfStream)
+                {
+                    String line = sr.ReadLine();
+                    if (line != "")
+                    {
+                        predpis.Items.Add(line);
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Nelze načíst soubor 'vstup.dat'", "Chyba při otervírání souboru");
+                return;
+            }
         }
 
         /// <summary>

@@ -41,6 +41,8 @@
             this.draw_series_but = new System.Windows.Forms.Button();
             this.BodRe = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBox_threshold = new System.Windows.Forms.TextBox();
             this.show_axes = new System.Windows.Forms.CheckBox();
             this.reset = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
@@ -54,7 +56,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.reMaxBox = new System.Windows.Forms.TextBox();
             this.set_color_choice = new System.Windows.Forms.Button();
-            this.predpis = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.souborToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,8 +78,7 @@
             this.exterior_color_choice = new System.Windows.Forms.Button();
             this.set_color_disp = new System.Windows.Forms.TextBox();
             this.textBox_time = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.textBox_threshold = new System.Windows.Forms.TextBox();
+            this.predpis = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -233,6 +233,22 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Zobrazení";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(11, 48);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(32, 13);
+            this.label10.TabIndex = 22;
+            this.label10.Text = "Práh:";
+            // 
+            // textBox_threshold
+            // 
+            this.textBox_threshold.Location = new System.Drawing.Point(53, 45);
+            this.textBox_threshold.Name = "textBox_threshold";
+            this.textBox_threshold.Size = new System.Drawing.Size(56, 20);
+            this.textBox_threshold.TabIndex = 21;
+            // 
             // show_axes
             // 
             this.show_axes.AutoSize = true;
@@ -351,13 +367,6 @@
             this.set_color_choice.UseVisualStyleBackColor = true;
             this.set_color_choice.Click += new System.EventHandler(this.set_color_choice_Click);
             // 
-            // predpis
-            // 
-            this.predpis.Location = new System.Drawing.Point(133, 25);
-            this.predpis.Name = "predpis";
-            this.predpis.Size = new System.Drawing.Size(418, 20);
-            this.predpis.TabIndex = 9;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -463,7 +472,7 @@
             // 
             // use_formula
             // 
-            this.use_formula.Location = new System.Drawing.Point(557, 22);
+            this.use_formula.Location = new System.Drawing.Point(557, 23);
             this.use_formula.Name = "use_formula";
             this.use_formula.Size = new System.Drawing.Size(75, 23);
             this.use_formula.TabIndex = 14;
@@ -544,33 +553,25 @@
             this.textBox_time.Size = new System.Drawing.Size(65, 20);
             this.textBox_time.TabIndex = 17;
             // 
-            // label10
+            // predpis
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(11, 48);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(32, 13);
-            this.label10.TabIndex = 22;
-            this.label10.Text = "Práh:";
-            // 
-            // textBox_threshold
-            // 
-            this.textBox_threshold.Location = new System.Drawing.Point(53, 45);
-            this.textBox_threshold.Name = "textBox_threshold";
-            this.textBox_threshold.Size = new System.Drawing.Size(56, 20);
-            this.textBox_threshold.TabIndex = 21;
+            this.predpis.FormattingEnabled = true;
+            this.predpis.Location = new System.Drawing.Point(132, 24);
+            this.predpis.Name = "predpis";
+            this.predpis.Size = new System.Drawing.Size(419, 21);
+            this.predpis.TabIndex = 18;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(734, 672);
+            this.Controls.Add(this.predpis);
             this.Controls.Add(this.textBox_time);
             this.Controls.Add(this.current_formula);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.use_formula);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.predpis);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -620,7 +621,6 @@
         private System.Windows.Forms.Button draw_series_but;
         private System.Windows.Forms.Button reset;
         private System.Windows.Forms.CheckBox show_axes;
-        private System.Windows.Forms.TextBox predpis;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem souborToolStripMenuItem;
@@ -648,6 +648,7 @@
         private System.Windows.Forms.TextBox textBox_time;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBox_threshold;
+        private System.Windows.Forms.ComboBox predpis;
     }
 }
 
