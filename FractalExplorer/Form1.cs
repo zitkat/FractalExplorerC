@@ -442,7 +442,12 @@ namespace FractalExplorer
         private int count_iterations(Complex z, int max)
         {
             int i = 0;
-            Complex tmpz = z;
+            Complex tmpz= z;
+            if (formula.containc_c)
+            {
+                 tmpz = new Complex(0, 0);
+            }
+
             double fsq = calc.fsq(tmpz);
 
             while (i < max && fsq <= threshold)
@@ -465,6 +470,10 @@ namespace FractalExplorer
             bool fin = false;
             int i = 0;
             Complex tmpz = z;
+            if (formula.containc_c)
+            {
+                tmpz = new Complex(0, 0);
+            }
             double fsq = calc.fsq(tmpz);
             
             pero = new Pen(Color.Gray, line_width);
@@ -670,7 +679,7 @@ namespace FractalExplorer
                                 "Chyba při parsování");
                 return;
             }
-            current_formula.Text = predpis.Text.Replace(" ", "");
+            current_formula.Text = formula.print_postfix();
 
         }
 
@@ -690,7 +699,7 @@ namespace FractalExplorer
                 }
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("Nelze načíst soubor 'vstup.dat'", "Chyba při otervírání souboru");
                 return;

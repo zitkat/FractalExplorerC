@@ -472,7 +472,7 @@
             // 
             // use_formula
             // 
-            this.use_formula.Location = new System.Drawing.Point(557, 23);
+            this.use_formula.Location = new System.Drawing.Point(551, 24);
             this.use_formula.Name = "use_formula";
             this.use_formula.Size = new System.Drawing.Size(75, 23);
             this.use_formula.TabIndex = 14;
@@ -483,7 +483,7 @@
             // current_formula
             // 
             this.current_formula.AutoSize = true;
-            this.current_formula.Location = new System.Drawing.Point(638, 28);
+            this.current_formula.Location = new System.Drawing.Point(632, 31);
             this.current_formula.Name = "current_formula";
             this.current_formula.Size = new System.Drawing.Size(41, 13);
             this.current_formula.TabIndex = 15;
@@ -558,7 +558,7 @@
             this.predpis.FormattingEnabled = true;
             this.predpis.Location = new System.Drawing.Point(132, 24);
             this.predpis.Name = "predpis";
-            this.predpis.Size = new System.Drawing.Size(419, 21);
+            this.predpis.Size = new System.Drawing.Size(413, 21);
             this.predpis.TabIndex = 18;
             // 
             // Form1

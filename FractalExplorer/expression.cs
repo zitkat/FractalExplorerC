@@ -45,6 +45,7 @@ namespace FractalExplorer
         int len;
 
         int position = 0;//position in parsed string
+        public bool containc_c;
 
         public Complex value_at(Complex z, Complex c)
         {
@@ -57,7 +58,6 @@ namespace FractalExplorer
 
             for (int i = 0; i < len; i++)
             {
-                //TODO optimize?
                 work_tok = expr[i];             
                 switch (work_tok.tag)
                 {
@@ -121,6 +121,7 @@ namespace FractalExplorer
         /// <param name="s"></param>
         private void parse(String s)  
         {
+            this.containc_c = false;
             expr = new tok[s.Length];
             int i=0;
             position = 0;
@@ -142,6 +143,11 @@ namespace FractalExplorer
                     switch (curr_tok.tag)
                     {
                         case 'c':
+                            this.containc_c = true;
+                            expr[i]=curr_tok;//appends curr_tok at end of expression
+                            i++;
+                            expecting = ")b";
+                            break;
                         case 'z':
                         case 'n': /*if token is a number or variable it is added to the output array*/
                             expr[i]=curr_tok;//appends curr_tok at end of expression
@@ -171,6 +177,7 @@ namespace FractalExplorer
                                         work_tok = stack.Pop();
                                         expr[i] = work_tok;
                                         i++;
+                                        continue;
                                     }
                                     else break;
                                 }
@@ -338,7 +345,7 @@ namespace FractalExplorer
                                  val = new Complex(Double.Parse(num), 0);
                              }
                          }
-                         catch(Exception e)
+                         catch(Exception)
                          {
                              throw new parsingException("Chyba v čísle", position);
                          }
@@ -432,6 +439,35 @@ namespace FractalExplorer
             }
             return 0;
 
+        }
+
+        public String print_postfix()
+        {
+            String res = "";
+            for (int i = 0; i < expr.Length; i++)
+            {
+               switch (expr[i].tag) 
+               {
+                   case 'n' :
+                       res = res + expr[i].value.ToString();
+                       break;
+                   case 'z':
+                   case 'c':
+                   case '(':
+                   case ')':
+                       res = res + expr[i].tag;
+                       break;
+                   case 'f':
+                       res = res + calc.functions[expr[i].op_num].name;
+                       break;
+                   case 'b':
+                       res = res + calc.binary_operations[expr[i].op_num].op;
+                       break;
+                   default:
+                       break;
+               }
+            }
+            return res;
         }
 
     }
