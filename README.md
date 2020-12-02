@@ -1,5 +1,5 @@
 # FractalExplorerC
-Simple application for exploring fractals in complex plane.
+Simple application for exploring fractals in complex plane. So far the interface is in czech, but that might change in future.
 
 ## Setup
 VisualStudio solution file is provided, all necessary files should be available, build tested under: 
