@@ -701,7 +701,7 @@ namespace FractalExplorer
             }
             catch (Exception)
             {
-                MessageBox.Show("Nelze načíst soubor 'vstup.dat'", "Chyba při otervírání souboru");
+                MessageBox.Show("Nelze načíst soubor 'vstup.dat'", "Chyba při otevírání souboru");
                 return;
             }
         }
