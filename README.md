@@ -7,3 +7,5 @@ VisualStudio solution file is provided, all necessary files should be available,
 Microsoft Visual Studio Community 2019 Version 16.7.7
 
 .NET Framework 4.6.1
+
+![Mandelbrot screenshot](http://home.zcu.cz/~zitkat/fe_shot1.png)
